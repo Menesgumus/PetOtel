@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ankarapethouse-db
+    environment:
+      POSTGRES_DB: ankara_pet_house
+      POSTGRES_USER: ankara_pet_house
+      POSTGRES_PASSWORD: ankara_pet_house
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ankara_pet_house -d ankara_pet_house"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
