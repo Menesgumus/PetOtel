@@ -14,4 +14,5 @@ public interface PetServiceRepository extends JpaRepository<PetServiceEntity, UU
     Optional<PetServiceEntity> findBySlugAndActiveTrueAndDeletedAtIsNull(String slug);
     boolean existsBySlugAndDeletedAtIsNull(String slug);
     boolean existsBySlugAndDeletedAtIsNullAndIdNot(String slug, UUID id);
+    List<PetServiceEntity> findByCoverImageId(UUID coverImageId);
 }

@@ -2,7 +2,7 @@ spring:
   application:
     name: ankara-pet-house-api
   config:
-    import: optional:file:.env[.properties]
+    import: optional:file:.env[.properties], optional:file:../.env[.properties]
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5434/ankara_pet_house}
     username: ${SPRING_DATASOURCE_USERNAME:ankara_pet_house}
@@ -47,5 +47,6 @@ app:
 
   admin-seed:
     enabled: ${APP_ADMIN_SEED_ENABLED:false}
+    username: ${APP_ADMIN_USERNAME:admin}
     email: ${APP_ADMIN_EMAIL:admin@ankarapethouse.com}
-    password: ${APP_ADMIN_PASSWORD:change-me-locally}
+    password: ${APP_ADMIN_PASSWORD:admin}

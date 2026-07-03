@@ -26,4 +26,5 @@ public class PetServiceRequest {
 
     private Boolean active;
     private Integer sortOrder;
+    private java.util.UUID coverImageId;
 }

@@ -1,5 +1,6 @@
 package com.ankarapethouse.api.page;
 
+import com.ankarapethouse.api.media.MediaAsset;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -21,6 +22,14 @@ public class PageContent {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cover_image_id")
+    private MediaAsset coverImage;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "secondary_image_id")
+    private MediaAsset secondaryImage;
 
     @Column(name = "seo_title")
     private String seoTitle;

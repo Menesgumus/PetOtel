@@ -42,6 +42,11 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/health", "/api/v1/public/**", "/api/v1/auth/login", "/uploads/**").permitAll()
                 .requestMatchers("/api/v1/admin/**", "/api/v1/auth/me").hasRole("ADMIN")
                 .anyRequest().authenticated()
+            )
+            .exceptionHandling(exceptions -> exceptions
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.sendError(jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                })
             );
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

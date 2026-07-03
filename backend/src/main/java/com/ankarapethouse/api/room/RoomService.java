@@ -9,6 +9,7 @@ import com.ankarapethouse.api.room.dto.RoomRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,6 +43,7 @@ public class RoomService {
                 .orElseThrow(() -> new ResourceNotFoundException("Room not found"));
     }
 
+    @Transactional
     public Room createRoom(RoomRequest request) {
         String slug = prepareSlug(request.getTitle(), request.getSlug(), null);
         
@@ -52,6 +54,7 @@ public class RoomService {
         return repository.save(entity);
     }
 
+    @Transactional
     public Room updateRoom(UUID id, RoomRequest request) {
         Room entity = getRoomById(id);
         String slug = prepareSlug(request.getTitle(), request.getSlug(), id);
@@ -62,18 +65,21 @@ public class RoomService {
         return repository.save(entity);
     }
 
+    @Transactional
     public void updateActiveStatus(UUID id, boolean isActive) {
         Room entity = getRoomById(id);
         entity.setActive(isActive);
         repository.save(entity);
     }
 
+    @Transactional
     public void updateSortOrder(UUID id, Integer sortOrder) {
         Room entity = getRoomById(id);
         entity.setSortOrder(sortOrder != null ? sortOrder : 0);
         repository.save(entity);
     }
 
+    @Transactional
     public void deleteRoom(UUID id) {
         Room entity = getRoomById(id);
         entity.setDeletedAt(LocalDateTime.now());

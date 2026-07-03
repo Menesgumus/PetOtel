@@ -13,6 +13,8 @@ public class RoomResponse {
     private String slug;
     private String description;
     private MediaResponse coverImage;
+    private UUID coverImageId;
+    private String coverImageUrl;
     private String seoTitle;
     private String seoDescription;
     private boolean active;
@@ -28,6 +30,10 @@ public class RoomResponse {
         dto.setSlug(entity.getSlug());
         dto.setDescription(entity.getDescription());
         dto.setCoverImage(MediaResponse.from(entity.getCoverImage()));
+        if (entity.getCoverImage() != null) {
+            dto.setCoverImageId(entity.getCoverImage().getId());
+            dto.setCoverImageUrl(entity.getCoverImage().getUrl());
+        }
         dto.setSeoTitle(entity.getSeoTitle());
         dto.setSeoDescription(entity.getSeoDescription());
         dto.setActive(entity.isActive());

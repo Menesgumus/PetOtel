@@ -13,6 +13,10 @@ public class PageContentResponse {
     private String content;
     private String seoTitle;
     private String seoDescription;
+    private UUID coverImageId;
+    private String coverImageUrl;
+    private UUID secondaryImageId;
+    private String secondaryImageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -25,6 +29,14 @@ public class PageContentResponse {
         dto.setContent(entity.getContent());
         dto.setSeoTitle(entity.getSeoTitle());
         dto.setSeoDescription(entity.getSeoDescription());
+        if (entity.getCoverImage() != null) {
+            dto.setCoverImageId(entity.getCoverImage().getId());
+            dto.setCoverImageUrl(entity.getCoverImage().getUrl());
+        }
+        if (entity.getSecondaryImage() != null) {
+            dto.setSecondaryImageId(entity.getSecondaryImage().getId());
+            dto.setSecondaryImageUrl(entity.getSecondaryImage().getUrl());
+        }
         dto.setCreatedAt(entity.getCreatedAt());
         dto.setUpdatedAt(entity.getUpdatedAt());
         return dto;

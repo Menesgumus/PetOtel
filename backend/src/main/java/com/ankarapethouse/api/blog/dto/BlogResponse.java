@@ -14,6 +14,8 @@ public class BlogResponse {
     private String summary;
     private String content;
     private MediaResponse coverImage;
+    private UUID coverImageId;
+    private String coverImageUrl;
     private String seoTitle;
     private String seoDescription;
     private String status;
@@ -30,6 +32,10 @@ public class BlogResponse {
         dto.setSummary(entity.getSummary());
         dto.setContent(entity.getContent());
         dto.setCoverImage(MediaResponse.from(entity.getCoverImage()));
+        if (entity.getCoverImage() != null) {
+            dto.setCoverImageId(entity.getCoverImage().getId());
+            dto.setCoverImageUrl(entity.getCoverImage().getUrl());
+        }
         dto.setSeoTitle(entity.getSeoTitle());
         dto.setSeoDescription(entity.getSeoDescription());
         dto.setStatus(entity.getStatus());

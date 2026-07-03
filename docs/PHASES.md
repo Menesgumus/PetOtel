@@ -14,31 +14,36 @@ The Ankara Pet House modernization project is divided into the following sequent
 - Creation of static UI content for all planned Turkish SEO routes.
 - Component library finalization (Buttons, Sections, Cards).
 
-### Phase 3: Backend CRUD APIs
+### Phase 3: Backend CRUD APIs (Completed)
 - Full implementation of JPA repositories and services.
 - Mapping entities to DTOs.
 - Creating functional public read endpoints (Services, Rooms, Blog).
 - Structuring Admin CRUD endpoints.
 
-### Phase 4: Admin Panel
+### Phase 4: Admin Panel (Completed)
 - Next.js Admin authentication UI implementation.
 - Spring Security JWT / Session integration on the backend.
 - Forms for managing blog posts, media uploads, and services.
-- WYSIWYG editor integration for content.
+- Basic markdown editor integration for content.
 
-### Phase 5: SEO Layer
+### Phase 5: SEO Layer (Completed)
 - Finalizing dynamic metadata injection.
 - Creating the robust JSON-LD schema components.
 - Connecting dynamic backend content to the Next.js frontend rendering pipeline.
 
-### Phase 6: Performance and Mobile Polish
-- Lighthouse score optimization.
-- Image optimization pipeline using Next/Image and backend sizing.
-- Final CSS micro-interactions and touch targets polish.
+### Phase 6: Final Polish, Accessibility & Bug Fixes (Completed)
+- Visual Theme Bug Fixes (Tailwind v4 @theme inline integration)
+- Logo Integration (`/brand/ankara-pet-house-logo.jpg`)
+- Mobile view optimizations and `overflow-x-auto` admin table wrappers
+- Accessibility (a11y) improvements (touch targets, semantic HTML)
+- Full Regression Pass (SEO, Admin Auth, Public Safe Fallbacks)
+- Pre-launch `QA_CHECKLIST.md` creation
 
-### Phase 7: GTM and Production Deployment
-- Injecting Google Tag Manager.
-- Preparing production environment variables.
-- Deploying frontend to Vercel/similar.
-- Deploying backend to VPS/Managed hosting.
+### Phase 7: Deployment & Post-Launch (Pending)
+- Environment Variables setup for Production
+- VPS/Vercel Database setup
+- Build and Deploy Frontend and Backend
+- SSL Configuration
+- Google Tag Manager (GTM) Integration
+- Upload real Pet Hotel photos via Admin Panel
 - Go-live.

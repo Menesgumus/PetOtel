@@ -15,6 +15,7 @@ public class MediaResponse {
     private Integer width;
     private Integer height;
     private String altText;
+    private java.util.List<String> usages;
     private LocalDateTime createdAt;
 
     public static MediaResponse from(MediaAsset entity) {
@@ -28,6 +29,7 @@ public class MediaResponse {
         dto.setWidth(entity.getWidth());
         dto.setHeight(entity.getHeight());
         dto.setAltText(entity.getAltText());
+        dto.setUsages(new java.util.ArrayList<>());
         dto.setCreatedAt(entity.getCreatedAt());
         return dto;
     }

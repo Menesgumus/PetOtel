@@ -9,6 +9,7 @@ import com.ankarapethouse.api.media.MediaRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -44,6 +45,7 @@ public class BlogService {
                 .orElseThrow(() -> new ResourceNotFoundException("Blog post not found"));
     }
 
+    @Transactional
     public BlogPost createPost(BlogRequest request) {
         String slug = prepareSlug(request.getTitle(), request.getSlug(), null);
 
@@ -58,6 +60,7 @@ public class BlogService {
         return blogRepository.save(post);
     }
 
+    @Transactional
     public BlogPost updatePost(UUID id, BlogRequest request) {
         BlogPost post = getPostById(id);
         String slug = prepareSlug(request.getTitle(), request.getSlug(), id);
@@ -73,12 +76,14 @@ public class BlogService {
         return blogRepository.save(post);
     }
 
+    @Transactional
     public void deletePost(UUID id) {
         BlogPost post = getPostById(id);
         post.setDeletedAt(LocalDateTime.now());
         blogRepository.save(post);
     }
 
+    @Transactional
     public void updateStatus(UUID id, String status) {
         BlogPost post = getPostById(id);
         String oldStatus = post.getStatus();

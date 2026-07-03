@@ -17,4 +17,8 @@ public class PageContentRequest {
 
     @Size(max = 500)
     private String seoDescription;
+    
+    private java.util.UUID coverImageId;
+    
+    private java.util.UUID secondaryImageId;
 }

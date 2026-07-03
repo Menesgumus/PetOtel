@@ -13,4 +13,5 @@ public interface BlogRepository extends JpaRepository<BlogPost, UUID> {
     Optional<BlogPost> findBySlugAndDeletedAtIsNull(String slug);
     boolean existsBySlugAndDeletedAtIsNullAndIdNot(String slug, UUID id);
     boolean existsBySlugAndDeletedAtIsNull(String slug);
+    java.util.List<BlogPost> findByCoverImageId(UUID coverImageId);
 }

@@ -1,11 +1,14 @@
 package com.ankarapethouse.api.servicecatalog;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "pet_services")
 public class PetServiceEntity {
@@ -24,6 +27,10 @@ public class PetServiceEntity {
 
     @Column(columnDefinition = "TEXT")
     private String content;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cover_image_id")
+    private com.ankarapethouse.api.media.MediaAsset coverImage;
 
     @Column(name = "seo_title")
     private String seoTitle;
@@ -55,5 +62,18 @@ public class PetServiceEntity {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PetServiceEntity that = (PetServiceEntity) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

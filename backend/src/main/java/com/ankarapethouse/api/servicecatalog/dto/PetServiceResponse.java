@@ -16,6 +16,8 @@ public class PetServiceResponse {
     private String seoDescription;
     private boolean active;
     private Integer sortOrder;
+    private UUID coverImageId;
+    private String coverImageUrl;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -33,6 +35,10 @@ public class PetServiceResponse {
         dto.setSortOrder(entity.getSortOrder());
         dto.setCreatedAt(entity.getCreatedAt());
         dto.setUpdatedAt(entity.getUpdatedAt());
+        if (entity.getCoverImage() != null) {
+            dto.setCoverImageId(entity.getCoverImage().getId());
+            dto.setCoverImageUrl(entity.getCoverImage().getUrl());
+        }
         return dto;
     }
 }

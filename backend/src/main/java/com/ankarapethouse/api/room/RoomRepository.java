@@ -14,4 +14,5 @@ public interface RoomRepository extends JpaRepository<Room, UUID> {
     Optional<Room> findBySlugAndActiveTrueAndDeletedAtIsNull(String slug);
     boolean existsBySlugAndDeletedAtIsNull(String slug);
     boolean existsBySlugAndDeletedAtIsNullAndIdNot(String slug, UUID id);
+    List<Room> findByCoverImageId(UUID coverImageId);
 }
