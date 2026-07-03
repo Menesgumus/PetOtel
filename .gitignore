@@ -16,6 +16,9 @@ yarn-error.log*
 .env.*
 .env*.local
 
+!.env.example
+!backend/.env.example
+
 # Spring Boot
 target/
 !.mvn/wrapper/maven-wrapper.jar

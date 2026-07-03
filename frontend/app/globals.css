@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F4EF;
+  --foreground: #172033;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-brand-navy: #061F45;
+  --color-brand-white: #FFFFFF;
+  --color-brand-soft: #F7F4EF;
+  --color-brand-cream: #F7F4EF;
+  --color-brand-gold: #C9A76A;
+  --color-brand-text: #172033;
+  --color-brand-border: #E7E2DA;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, 'Segoe UI', Arial, sans-serif);
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(56px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(-96px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(96px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.hero-animate-up {
+  opacity: 0;
+  animation: fade-slide-up 1100ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate-left {
+  opacity: 0;
+  animation: fade-slide-left 1200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-animate-right {
+  opacity: 0;
+  animation: fade-slide-right 1200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.hero-delay-100 {
+  animation-delay: 150ms;
+}
+
+.hero-delay-200 {
+  animation-delay: 300ms;
+}
+
+.hero-delay-300 {
+  animation-delay: 450ms;
+}
+
+.hero-delay-400 {
+  animation-delay: 600ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-animate-up,
+  .hero-animate-left,
+  .hero-animate-right {
+    opacity: 1;
+    animation: none;
+    transform: none;
+  }
+}

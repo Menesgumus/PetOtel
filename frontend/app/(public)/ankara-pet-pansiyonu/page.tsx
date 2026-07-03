@@ -1,0 +1,9 @@
+import DynamicServicePage, { generateMetadata as dynamicGenerateMetadata } from '../[slug]/page';
+
+export async function generateMetadata() {
+  return dynamicGenerateMetadata({ params: Promise.resolve({ slug: 'ankara-pet-pansiyonu' }) });
+}
+
+export default function ServicePage() {
+  return <DynamicServicePage params={Promise.resolve({ slug: 'ankara-pet-pansiyonu' })} />;
+}

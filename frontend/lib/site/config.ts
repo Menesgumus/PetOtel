@@ -1,0 +1,30 @@
+export const siteConfig = {
+  businessName: 'Ankara Pet House',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://ankarapethouse.com',
+  phone: '0531 688 43 21',
+  whatsapp: '0531 688 43 21',
+  email: 'info@ankarapethouse.com',
+  address: 'Ankara, Türkiye',
+  googleMapsUrl: 'https://www.google.com/maps/dir/?api=1&destination=39.9768675,32.690292',
+  social: {
+    instagram: '#instagram',
+    facebook: '#facebook',
+  },
+  navigation: [
+    { name: 'Anasayfa', href: '/' },
+    { name: 'Hakkımızda', href: '/hakkimizda' },
+    { name: 'Hizmetlerimiz', href: '/hizmetlerimiz' },
+    { name: 'Odalar', href: '/odalar' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'İletişim', href: '/iletisim' },
+  ],
+  services: [
+    { name: 'Kedi Oteli', href: '/ankara-kedi-oteli' },
+    { name: 'Köpek Oteli', href: '/ankara-kopek-oteli' },
+    { name: 'Pet Pansiyonu', href: '/ankara-pet-pansiyonu' },
+    { name: 'Pet Taksi', href: '/pet-taksi-ankara' },
+    { name: 'Pet Kreş', href: '/pet-kres-ankara' },
+    { name: 'Bakım ve Gezdirme', href: '/pet-bakim-gezdirme-ankara' },
+    { name: 'Pet Eğitimi', href: '/pet-egitimi-ankara' },
+  ],
+};
