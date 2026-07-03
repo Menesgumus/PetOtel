@@ -56,10 +56,11 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
+    const internalBackendOrigin = process.env.INTERNAL_BACKEND_ORIGIN || 'http://localhost:8080';
     return [
       {
         source: '/uploads/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080'}/uploads/:path*`,
+        destination: `${internalBackendOrigin}/uploads/:path*`,
       },
     ];
   },

@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import { resolveMediaUrl } from '@/lib/api/helpers';
 import { ImagePlaceholder } from './ImagePlaceholder';
 import { siteConfig } from '@/lib/site/config';
 
@@ -35,13 +37,13 @@ export function RoomCard({ title, description, imageUrl }: RoomCardProps) {
         {imageUrl ? (
           <div className="relative w-full aspect-[4/3]">
             <img
-              src={imageUrl}
+              src={resolveMediaUrl(imageUrl) || ""}
               alt=""
               aria-hidden="true"
               className="absolute inset-0 h-full w-full object-cover blur-xl opacity-30 scale-110 transition-transform duration-500 ease-out group-hover:scale-[1.16] motion-reduce:transform-none motion-reduce:transition-none"
             />
             <img
-              src={imageUrl}
+              src={resolveMediaUrl(imageUrl) || ""}
               alt={title}
               className="relative z-10 h-full w-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none"
             />

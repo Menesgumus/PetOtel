@@ -1,7 +1,11 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080/api/v1';
+const isServer = typeof window === 'undefined';
+
+export const API_BASE_URL = isServer
+  ? (process.env.INTERNAL_API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080/api/v1')
+  : (process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080/api/v1');
 
 export async function publicFetch(endpoint: string, options: RequestInit = {}) {
   const url = `${API_BASE_URL}/public${endpoint}`;

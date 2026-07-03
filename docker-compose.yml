@@ -1,8 +1,8 @@
-
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: ankarapethouse-db
+    container_name: ankara-pet-house-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-ankara_pet_house}
       POSTGRES_USER: ${POSTGRES_USER:-ankara_pet_house}
@@ -12,11 +12,61 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ankara_pet_house -d ankara_pet_house"]
-      interval: 5s
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-ankara_pet_house} -d ${POSTGRES_DB:-ankara_pet_house}"]
+      interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - ankara_pet_house_network
+
+  backend:
+    build:
+      context: ./backend
+    container_name: ankara-pet-house-backend
     restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-ankara_pet_house}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-ankara_pet_house}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-ankara_pet_house}
+      APP_JWT_SECRET: ${APP_JWT_SECRET}
+      APP_JWT_EXPIRATION_MS: ${APP_JWT_EXPIRATION_MS:-86400000}
+      APP_FRONTEND_ORIGIN: ${APP_FRONTEND_ORIGIN:-http://localhost:3000}
+      APP_UPLOAD_DIR: /app/uploads
+      APP_ADMIN_SEED_ENABLED: ${APP_ADMIN_SEED_ENABLED:-false}
+      APP_ADMIN_USERNAME: ${APP_ADMIN_USERNAME:-admin}
+      APP_ADMIN_EMAIL: ${APP_ADMIN_EMAIL:-admin@ankarapethouse.com}
+      APP_ADMIN_PASSWORD: ${APP_ADMIN_PASSWORD:-admin}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/uploads:/app/uploads
+    networks:
+      - ankara_pet_house_network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ankara-pet-house-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://localhost:8080/api/v1}
+      INTERNAL_API_BASE_URL: ${INTERNAL_API_BASE_URL:-http://backend:8080/api/v1}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      INTERNAL_BACKEND_ORIGIN: http://backend:8080
+    ports:
+      - "3000:3000"
+    networks:
+      - ankara_pet_house_network
 
 volumes:
   postgres-data:
+
+networks:
+  ankara_pet_house_network:
+    driver: bridge

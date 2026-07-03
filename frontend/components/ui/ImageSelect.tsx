@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { getAdminMediaAssets } from '@/lib/api/admin';
 import { MediaAsset } from '@/types/api';
+import { resolveMediaUrl } from '@/lib/api/helpers';
 
 interface ImageSelectProps {
   name: string;
@@ -48,7 +49,7 @@ export function ImageSelect({ name, defaultValue }: ImageSelectProps) {
       {!loading && selectedId && (
         <div className="mt-2 relative w-32 h-20 rounded-md overflow-hidden border border-gray-200">
           <img 
-            src={mediaAssets.find(a => a.id.toString() === selectedId)?.url || ''} 
+            src={resolveMediaUrl(mediaAssets.find(a => a.id.toString() === selectedId)?.url) || ''} 
             alt="Preview" 
             className="w-full h-full object-cover"
           />

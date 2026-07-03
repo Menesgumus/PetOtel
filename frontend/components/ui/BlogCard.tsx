@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { resolveMediaUrl } from '@/lib/api/helpers';
 import { ImagePlaceholder } from './ImagePlaceholder';
 
 interface BlogCardProps {
@@ -21,7 +22,7 @@ export function BlogCard({ title, summary, href, date, imageUrl }: BlogCardProps
         {imageUrl ? (
           <div className="relative w-full aspect-[4/3] overflow-hidden">
             <img
-              src={imageUrl}
+              src={resolveMediaUrl(imageUrl) || ""}
               alt=""
               aria-hidden="true"
               className="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-30 transition-transform duration-500 ease-out group-hover:scale-[1.16] group-focus-within:scale-[1.16] motion-reduce:transform-none motion-reduce:transition-none"
@@ -31,7 +32,7 @@ export function BlogCard({ title, summary, href, date, imageUrl }: BlogCardProps
               className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-brand-navy/5"
             />
             <img
-              src={imageUrl}
+              src={resolveMediaUrl(imageUrl) || ""}
               alt={title}
               className="relative z-10 h-full w-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-within:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none"
             />
