@@ -29,10 +29,11 @@ export async function login(prevState: any, formData: FormData) {
     
     if (data.token) {
       const cookieStore = await cookies();
+      const cookieSecure = process.env.APP_COOKIE_SECURE === "true";
       
       cookieStore.set('auth_token', data.token, {
         httpOnly: true,
-        secure: process.env.APP_COOKIE_SECURE === 'true' || (process.env.APP_COOKIE_SECURE === undefined && process.env.NODE_ENV === 'production'),
+        secure: cookieSecure,
         sameSite: 'lax',
         path: '/',
         maxAge: 60 * 60 * 24, // 24 hours
