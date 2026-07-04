@@ -4,7 +4,7 @@ import { MobileContactBar } from "@/components/layout/MobileContactBar";
 import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton";
 import { getPublicSiteSettings } from "@/lib/api/public";
 import { siteConfig } from "@/lib/site/config";
-export default function PublicLayout({
+export default async function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
