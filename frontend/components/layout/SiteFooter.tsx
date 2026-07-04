@@ -3,6 +3,7 @@ import { siteConfig } from '@/lib/site/config';
 import { Container } from '../ui/Container';
 import { getPublicSiteSettings } from '@/lib/api/public';
 import { BrandLogo } from './BrandLogo';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export async function SiteFooter() {
   const settings = await getPublicSiteSettings().catch(() => null);
@@ -23,7 +24,7 @@ export async function SiteFooter() {
               <BrandLogo variant="footer" />
             </div>
             <p className="text-brand-border text-sm mb-4">
-              Ankara'da kedi ve köpekleriniz için güvenilir, konforlu ve profesyonel konaklama ile bakım hizmetleri.
+              Ankara&apos;da kedi ve köpekleriniz için güvenilir, konforlu ve profesyonel konaklama ile bakım hizmetleri.
             </p>
           </div>
           
@@ -64,7 +65,7 @@ export async function SiteFooter() {
                 </a>
               </li>
               <li>
-                <a href={`https://wa.me/${whatsapp.replace(/\s+/g, '')}`} className="hover:text-white">
+                <a href={getWhatsAppUrl(whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")} className="hover:text-white">
                   📱 WhatsApp
                 </a>
               </li>
@@ -76,7 +77,7 @@ export async function SiteFooter() {
               <li className="pt-2">
                 <p>📍 {address}</p>
                 <a href="https://www.google.com/maps/dir/?api=1&destination=39.9768675,32.690292" target="_blank" rel="noopener noreferrer" className="text-brand-gold hover:text-white mt-1 inline-block text-sm">
-                  Google Maps'te Gör &rarr;
+                  Google Maps&apos;te Gör &rarr;
                 </a>
               </li>
             </ul>

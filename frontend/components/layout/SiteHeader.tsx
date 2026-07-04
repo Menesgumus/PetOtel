@@ -4,6 +4,7 @@ import { siteConfig } from '@/lib/site/config';
 import { MobileMenu } from './MobileMenu';
 import { BrandLogo } from './BrandLogo';
 import { Button } from '../ui/Button';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export function SiteHeader() {
   return (
@@ -28,7 +29,7 @@ export function SiteHeader() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Button href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} variant="primary">
+          <Button href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")} variant="primary">
             WhatsApp
           </Button>
         </div>

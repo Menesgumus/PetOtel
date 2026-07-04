@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { resolveMediaUrl } from '@/lib/api/helpers';
 import { ImagePlaceholder } from './ImagePlaceholder';
 import { siteConfig } from '@/lib/site/config';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 interface RoomCardProps {
   title: string;
@@ -56,7 +57,7 @@ export function RoomCard({ title, description, imageUrl }: RoomCardProps) {
         <h3 className="text-xl md:text-2xl font-bold text-brand-navy mb-3">{title}</h3>
         <p className="text-brand-text/80 mb-6 flex-grow">{description}</p>
         <a 
-          href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} 
+          href={getWhatsAppUrl(siteConfig.whatsapp, `Merhaba, ${title} hakkında bilgi almak istiyorum.`)}
           target="_blank"
           rel="noopener noreferrer"
           className="

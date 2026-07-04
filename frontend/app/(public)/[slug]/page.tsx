@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/lib/site/config';
 import { getPublicService } from '@/lib/api/public';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 // Fallback content for original SEO seeded services
 const FALLBACK_SERVICES: Record<string, any> = {
@@ -205,7 +206,7 @@ export default async function DynamicServicePage({ params }: { params: { slug: s
                 {description}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} variant="gold">
+                <Button href={getWhatsAppUrl(siteConfig.whatsapp, `Merhaba, ${title} hakkında bilgi almak istiyorum.`)} variant="gold">
                   WhatsApp ile Bilgi Al
                 </Button>
                 <a
@@ -251,7 +252,7 @@ export default async function DynamicServicePage({ params }: { params: { slug: s
               Evcil dostunuz için uygunluk durumunu ve detayları öğrenmek için bizimle iletişime geçebilirsiniz.
             </p>
             <div className="flex flex-col gap-3">
-              <Button href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} variant="primary" className="w-full">
+              <Button href={getWhatsAppUrl(siteConfig.whatsapp, `Merhaba, ${title} hakkında bilgi almak istiyorum.`)} variant="primary" className="w-full">
                 WhatsApp ile İletişime Geç
               </Button>
               <a

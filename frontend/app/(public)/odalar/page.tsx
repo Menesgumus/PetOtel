@@ -8,6 +8,7 @@ import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
 import { siteConfig } from '@/lib/site/config';
 import { Button } from '@/components/ui/Button';
 import { getPublicRooms, getPublicPage } from '@/lib/api/public';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export async function generateMetadata() {
   const dynamicPage = await getPublicPage('odalar').catch(() => null);
@@ -74,7 +75,7 @@ export default async function RoomsPage() {
                 Konaklama öncesinde evcil dostunuzun ihtiyaçlarını, alışkanlıklarını ve uygunluk durumunu birlikte değerlendirebiliriz.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} variant="gold" className="px-6 py-3">WhatsApp ile Bilgi Al</Button>
+                <Button href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")} variant="gold" className="px-6 py-3">WhatsApp ile Bilgi Al</Button>
                 <Button href="/hizmetlerimiz" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-navy px-6 py-3">Hizmetleri İncele</Button>
               </div>
             </div>

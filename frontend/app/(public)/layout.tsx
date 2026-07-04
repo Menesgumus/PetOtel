@@ -1,12 +1,16 @@
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MobileContactBar } from "@/components/layout/MobileContactBar";
-
+import FloatingWhatsAppButton from "@/components/ui/FloatingWhatsAppButton";
+import { getPublicSiteSettings } from "@/lib/api/public";
+import { siteConfig } from "@/lib/site/config";
 export default function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getPublicSiteSettings().catch(() => null);
+  const whatsapp = settings?.whatsapp || siteConfig.whatsapp;
   return (
     <>
       <SiteHeader />
@@ -15,6 +19,7 @@ export default function PublicLayout({
       </main>
       <SiteFooter />
       <MobileContactBar />
+      <FloatingWhatsAppButton phone={whatsapp} />
     </>
   );
 }

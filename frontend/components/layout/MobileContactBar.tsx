@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { siteConfig } from '@/lib/site/config';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export function MobileContactBar() {
   const [isVisible, setIsVisible] = useState(false);
@@ -47,7 +48,7 @@ export function MobileContactBar() {
       style={{ paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom))" }}
     >
       <a
-        href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`}
+        href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")}
         className="flex-1 bg-[#25D366] text-white text-center py-2.5 rounded-md font-bold text-sm shadow-sm"
         aria-label="WhatsApp ile iletişime geçin"
       >

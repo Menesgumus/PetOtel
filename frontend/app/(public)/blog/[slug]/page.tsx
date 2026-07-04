@@ -9,6 +9,7 @@ import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder';
 import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/lib/site/config';
 import { MarkdownContent } from '@/components/ui/MarkdownContent';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 const placeholderBlogs = {
   'kedilerin-mirlamasinin-sebepleri': { 
@@ -123,7 +124,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
             <div className="bg-brand-soft p-8 rounded-2xl border border-brand-border text-center">
               <h3 className="text-2xl font-bold text-brand-navy mb-4">Daha Fazla Bilgiye mi İhtiyacınız Var?</h3>
               <p className="text-brand-text/80 mb-6">Hizmetlerimiz hakkında detaylı bilgi almak veya hemen yer ayırtmak için bizimle iletişime geçin.</p>
-              <Button href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} variant="primary">
+              <Button href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")} variant="primary">
                 WhatsApp Üzerinden Ulaşın
               </Button>
             </div>

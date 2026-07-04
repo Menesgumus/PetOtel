@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site/config';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +48,7 @@ export function MobileMenu() {
               </Link>
             ))}
             <a
-              href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`}
+              href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")}
               className="mt-2 bg-brand-navy text-white text-center py-3 rounded-lg font-bold"
               onClick={() => setIsOpen(false)}
             >

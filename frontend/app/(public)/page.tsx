@@ -12,6 +12,7 @@ import { BlogCard } from '@/components/ui/BlogCard';
 import { siteConfig } from '@/lib/site/config';
 import Link from 'next/link';
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export const metadata = constructMetadata({
   title: 'Ankara Pet House | Ankara Pet Pansiyonu ve Pet Bakım Hizmetleri',
@@ -45,7 +46,7 @@ export default async function HomePage() {
               </p>
               <div id="hero-primary-cta" className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap hero-animate-up hero-delay-400">
                 <a
-                  href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`}
+                  href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
@@ -275,7 +276,7 @@ export default async function HomePage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap justify-center">
                 <a
-                  href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`}
+                  href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="

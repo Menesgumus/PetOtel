@@ -5,6 +5,7 @@ import { PageHero } from '@/components/ui/PageHero';
 import { ImagePlaceholder } from '@/components/ui/ImagePlaceholder';
 import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/lib/site/config';
+import { getWhatsAppUrl } from '@/lib/utils/whatsapp';
 
 export async function generateMetadata() {
   const dynamicPage = await getPublicPage('hakkimizda').catch(() => null);
@@ -126,7 +127,7 @@ export default async function AboutPage() {
                 Konaklama, kreş, bakım, gezdirme veya pet taksi hizmetleri hakkında bilgi almak için bizimle iletişime geçebilirsiniz.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button href={`https://wa.me/${siteConfig.whatsapp.replace(/\s+/g, '')}`} variant="gold" className="w-full sm:w-auto px-8 py-4 text-base">WhatsApp ile İletişim</Button>
+                <Button href={getWhatsAppUrl(siteConfig.whatsapp, "Merhaba, web siteniz üzerinden ulaşıyorum. Bilgi almak istiyorum.")} variant="gold" className="w-full sm:w-auto px-8 py-4 text-base">WhatsApp ile İletişim</Button>
                 <Button href="/hizmetlerimiz" variant="outline" className="w-full sm:w-auto px-8 py-4 text-base border-white/30 text-white hover:bg-white hover:text-brand-navy transition-colors">Hizmetleri İncele</Button>
               </div>
             </div>
